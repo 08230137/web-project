@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lotus Mind — Home</title>
+
+  <!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #f6f6f6;             /* page bg (very light) */
+      --header-strip: #b8b0ff;   /* soft header gradient base */
+      --nav-bg: #e6d6d6;         /* nav row bg */
+      --nav-pill: #a86e6e;       /* pill color */
+      --title-color: #0a0a0a;
+      --help-line: #4f2b2b;
+      --left-panel: #c7b0f0;     /* lilac left */
+      --right-panel: #f6c3e8;    /* pink right */
+      --objectives-bg: #f2c7c1;  /* peachy background for objectives */
+      --footer-bar: #7d7b6d;
+      --muted: #3b3b3b;
+      --accent: #7c3aed;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%; margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; background:var(--bg); color:var(--muted); -webkit-font-smoothing:antialiased;}
+
+    /* TOP HERO / HEADER */
+    .top-header{
+      width:100%;
+      background: linear-gradient(90deg, rgba(140,103,255,0.9), rgba(180,120,230,0.85));
+      padding: 18px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      position:relative;
+    }
+
+    /* logo circle left */
+    .logo {
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo .circle {
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background: radial-gradient(circle at 30% 20%, #e6fff6 0%, #cfeee6 40%, #bfe9dd 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      flex-shrink:0;
+    }
+    .logo .circle img { width:56px; height:56px; object-fit:contain; border-radius:50%; }
+
+    /* title center */
+    .title-wrapper {
+      flex:1;
+      text-align:center;
+    }
+    .site-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight:800;
+      letter-spacing:6px;
+      color:var(--title-color);
+      font-size:44px;
+      margin:0;
+      /* faux-outline by using text-shadow */
+      text-shadow:
+         -2px -2px 0 #ffffff88,
+         2px -2px 0 #ffffff88,
+         -2px 2px 0 #ffffff88,
+         2px 2px 0 #ffffff88;
+    }
+
+    /* arrow top-right */
+    .header-arrow {
+      width:56px;
+      height:56px;
+      border-radius:8px;
+      background:transparent;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      border:2px solid rgba(0,0,0,0.07);
+      box-shadow:0 2px 6px rgba(0,0,0,0.06);
+      flex-shrink:0;
+    }
+    .header-arrow svg{ width:26px; height:26px; color:#2b2b2b; transform:rotate(0deg); }
+
+    /* NAV row under header */
+    .nav-row {
+      width:100%;
+      background:var(--nav-bg);
+      padding:10px 14px;
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .nav-pill {
+      display:inline-block;
+      background:var(--nav-pill);
+      color: #fff;
+      padding:10px 22px;
+      border-radius:50px;
+      font-weight:600;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+      text-decoration:none;
+      font-size:15px;
+      transition:transform .15s ease, opacity .15s;
+    }
+    .nav-pill:hover{ transform:translateY(-3px); opacity:0.95; }
+
+    /* help/emoji line */
+    .help-line {
+      text-align:center;
+      margin:16px auto;
+      font-size:18px;
+      color:var(--help-line);
+      display:block;
+      max-width:980px;
+      padding: 6px 10px;
+    }
+
+    /* two-column info panel */
+    .info-grid {
+      max-width:980px;
+      margin: 18px auto;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:0;
+      align-items:start;
+      background:transparent;
+    }
+
+    .panel {
+      padding:28px 22px;
+      min-height:230px;
+    }
+
+    .panel.left {
+      background:var(--left-panel);
+      color:#2a2348;
+      border-right:6px solid rgba(0,0,0,0.03);
+    }
+    .panel.right {
+      background:var(--right-panel);
+      color:#2a2348;
+    }
+
+    .panel h3 {
+      margin:0 0 12px 0;
+      font-weight:700;
+      color:#1b1333;
+    }
+    .panel p {
+      margin:0;
+      line-height:1.5;
+      font-size:15px;
+    }
+
+    /* Objectives area */
+    .objectives {
+      margin: 18px auto;
+      max-width:980px;
+      background:var(--objectives-bg);
+      display:flex;
+      gap:18px;
+      align-items:center;
+      padding:24px;
+      border-radius:4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    .obj-left {
+      flex:0 0 220px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .obj-left .circle-illustration{
+      width:170px;
+      height:170px;
+      border-radius:50%;
+      background:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      box-shadow:0 4px 10px rgba(0,0,0,0.06);
+    }
+    .obj-left img{ width:160px; height:160px; object-fit:cover; display:block; }
+
+    .obj-right {
+      flex:1;
+      padding:6px 10px;
+    }
+
+    .obj-right h4 {
+      margin:0 0 10px 0;
+      font-weight:700;
+      text-align:center;
+    }
+
+    .obj-right ul {
+      margin:0;
+      padding-left:18px;
+      font-size:15px;
+      line-height:1.5;
+    }
+
+    /* Footer copyright bar */
+    .copyright {
+      margin-top:18px;
+      background:var(--footer-bar);
+      color:#fff;
+      padding:10px;
+      text-align:center;
+      font-size:13px;
+    }
+
+    /* responsive */
+    @media (max-width:900px){
+      .site-title { font-size:34px; letter-spacing:4px; }
+      .info-grid { grid-template-columns: 1fr; }
+      .objectives { flex-direction:column; text-align:center; }
+      .obj-left { margin-bottom:12px; }
+      .obj-right ul{ text-align:left; }
+      .nav-row{padding:12px 8px;}
+      .nav-pill{padding:8px 16px; font-size:14px;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header: logo left, title center, arrow right -->
+  <div class="top-header" role="banner">
+    <div class="logo" aria-hidden="true">
+      <div class="circle">
+        <!-- Placeholder logo: replace src with your logo png/svg -->
+        <img src="data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'>
+          <circle cx='60' cy='60' r='58' fill='%23e6fff6'/>
+          <path d='M60 25c8 6 18 18 8 34-10-16-20-28-8-34z' fill='%237c3aed'/>
+          <text x='50%' y='92%' font-size='12' text-anchor='middle' fill='%237c3aed' font-family='Montserrat'>LOTUS</text>
+        </svg>" alt="Lotus Mind logo" />
+      </div>
+    </div>
+
+    <div class="title-wrapper">
+      <h1 class="site-title">LOTUS MIND</h1>
+    </div>
+
+    <div class="header-arrow" title="Next">
+      <!-- right arrow -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 12h14"></path>
+        <path d="M12 5l7 7-7 7"></path>
+      </svg>
+    </div>
+  </div>
+
+  <!-- nav row with oval pills -->
+  <div class="nav-row" role="navigation" aria-label="Main navigation">
+    <a class="nav-pill" href="about.html">About us</a>
+    <a class="nav-pill" href="mood.html">Mood Tracker</a>
+    <a class="nav-pill" href="booking.html">Book Counselling</a>
+    <a class="nav-pill" href="contact.html">Contact</a>
+    <a class="nav-pill" href="resources.html">Resources</a>
+    <a class="nav-pill" href="login.html">Login</a>
+  </div>
+
+  <!-- help emoji line -->
+  <p class="help-line">🫂It's okay to ask for help! 📞You are not alone🤝</p>
+
+  <!-- two-column info (Helping You Thrive in College | Aim) -->
+  <div class="info-grid" role="main" aria-label="Intro and Aim">
+    <div class="panel left" aria-labelledby="helping-title">
+      <h3 id="helping-title">Helping You Thrive in College</h3>
+      <p>
+        Lotus Mind is a mental wellness platform designed to support college students through the challenges of academic life and personal growth. Our goal is to make mental health resources accessible, easy to use, and tailored to your needs all in one place.
+      </p>
+    </div>
+
+    <div class="panel right" aria-labelledby="aim-title">
+      <h3 id="aim-title">Aim</h3>
+      <p>
+        To develop a web and mobile platform that supports college students' mental health and well-being by providing access to counselling, self-assessment tools, resources, and peer support in a private and inclusive environment.
+      </p>
+    </div>
+  </div>
+
+  <!-- Objectives area with circular illustration left + objectives text -->
+  <section class="objectives" aria-label="Objectives section">
+    <div class="obj-left" aria-hidden="true">
+      <div class="circle-illustration">
+        <!-- illustrative placeholder; replace with your exported illustration (SVG/PNG) -->
+        <img src="data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'>
+          <rect width='200' height='200' rx='100' fill='%23fff' />
+          <g transform='translate(20,10)'>
+            <path d='M60 30c8 0 18 7 24 18 6 12 8 26-4 40-12 14-24 16-36 10-12-6-18-18-12-34 6-16 18-34 28-34z' fill='%23ee9fb0'/>
+            <circle cx='120' cy='62' r='6' fill='%23c47d97' />
+            <circle cx='40' cy='130' r='20' fill='%23cdebdc'/>
+          </g>
+        </svg>" alt="Illustration" />
+      </div>
+    </div>
+
+    <div class="obj-right">
+      <h4>Objectives</h4>
+      <ul>
+        <li>Enable students to book counseling appointments anonymously.</li>
+        <li>Provide mood tracking and self-assessment tools for emotional awareness.</li>
+        <li>Offer a resource library with articles, videos, and motivational content.</li>
+        <li>Facilitate peer support through moderated community groups.</li>
+        <li>Provide emergency contact access and anonymous sharing of concerns.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- copyright / footer -->
+  <div class="copyright">
+    Copyright LotusMind 2025. All Rights Reserved
+  </div>
+
+</body>
+</html>
