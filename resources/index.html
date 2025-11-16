@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Mental Health Resources</title>
+    
+    <!-- Tailwind & Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-heart text-white"></i>
+                    </div>
+                    <!-- Logo Image -->
+                    <div class="w-12 h-12 flex items-center justify-center">
+                        <img src="logo.png" alt="Lotus Mind Logo" class="w-full h-full object-contain rounded-full">
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-800">Lotus Mind</h1>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#" class="text-gray-600 hover:text-pink-500 font-medium">Home</a>
+                    <a href="#" class="text-gray-600 hover:text-pink-500 font-medium">Resources</a>
+                    <a href="#" class="text-gray-600 hover:text-pink-500 font-medium">Support</a>
+                    <a href="#" class="text-gray-600 hover:text-pink-500 font-medium">About</a>
+                </nav>
+                <button class="bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600 transition duration-200">
+                    Get Help Now
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-pink-500 to-purple-600 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-4">Your Mental Health Matters</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Access curated resources, videos, articles, and inspiring quotes to support your mental wellness journey.</p>
+
+            <!-- Search Bar -->
+            <div class="max-w-2xl mx-auto flex">
+                <input type="text" id="search-input" placeholder="Search for resources (anxiety, meditation, bullying...)" class="flex-grow px-4 py-3 rounded-l-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300">
+                <button onclick="handleSearch()" class="bg-pink-700 px-6 py-3 rounded-r-lg hover:bg-pink-800 transition duration-200 font-semibold">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Explore Button -->
+        <div class="text-center mb-8">
+            <button id="explore-button" onclick="toggleCategories()" class="bg-white border-2 border-pink-500 text-pink-500 px-6 py-3 rounded-lg hover:bg-pink-50 transition duration-200 font-semibold flex items-center mx-auto">
+                Explore Resources by Category
+                <svg class="ml-2 w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Category Dropdown -->
+        <div id="category-dropdown" class="hidden max-w-4xl mx-auto mb-12 fade-in">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Category Cards -->
+                <div class="resource-card bg-white rounded-xl shadow-md p-6 border-l-4 border-pink-500 hover:shadow-lg cursor-pointer" onclick="showResourceDetails('Anxiety')">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-heartbeat text-pink-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Anxiety</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Resources for managing anxiety, stress, and panic attacks with practical techniques and support.</p>
+                    <button class="text-pink-500 font-semibold hover:text-pink-700 transition duration-150">Learn More →</button>
+                </div>
+
+                <div class="resource-card bg-white rounded-xl shadow-md p-6 border-l-4 border-green-500 hover:shadow-lg cursor-pointer" onclick="showResourceDetails('Mindfulness & Meditation')">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-spa text-green-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Mindfulness & Meditation</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Guided meditations, breathing exercises, and mindfulness practices for daily wellness.</p>
+                    <button class="text-green-500 font-semibold hover:text-green-700 transition duration-150">Learn More →</button>
+                </div>
+
+                <div class="resource-card bg-white rounded-xl shadow-md p-6 border-l-4 border-blue-500 hover:shadow-lg cursor-pointer" onclick="showResourceDetails('Bullying & Cyberbullying')">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-shield-alt text-blue-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Bullying & Cyberbullying</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Support resources, reporting tools, and coping strategies for dealing with bullying.</p>
+                    <button class="text-blue-500 font-semibold hover:text-blue-700 transition duration-150">Learn More →</button>
+                </div>
+
+                <div class="resource-card bg-white rounded-xl shadow-md p-6 border-l-4 border-purple-500 hover:shadow-lg cursor-pointer" onclick="showResourceDetails('Inspiring Stories & Research')">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-star text-purple-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Inspiring Stories & Research</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Real stories of resilience and the latest research in mental health and wellness.</p>
+                    <button class="text-purple-500 font-semibold hover:text-purple-700 transition duration-150">Learn More →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resource Details -->
+        <section id="resource-details" class="hidden max-w-6xl mx-auto fade-in">
+            <button id="back-button" onclick="goBackToCategories()" class="mb-6 text-pink-500 hover:text-pink-700 font-semibold flex items-center transition duration-150">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Categories
+            </button>
+
+            <h2 id="detail-topic" class="text-3xl font-bold text-gray-800 mb-2"></h2>
+            <p id="detail-description" class="text-gray-600 mb-8 max-w-3xl"></p>
+
+            <!-- Tabs -->
+            <div class="border-b border-gray-200 mb-6">
+                <nav class="flex space-x-8">
+                    <button id="tab-videos" onclick="switchTab('videos')" class="py-4 px-1 border-b-2 border-pink-500 font-medium text-sm text-pink-600 flex items-center"><i class="fas fa-play-circle mr-2"></i> Videos</button>
+                    <button id="tab-articles" onclick="switchTab('articles')" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 flex items-center"><i class="fas fa-newspaper mr-2"></i> Articles</button>
+                    <button id="tab-quotes" onclick="switchTab('quotes')" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 flex items-center"><i class="fas fa-quote-right mr-2"></i> Quotes</button>
+                    <button id="tab-upload" onclick="switchTab('upload')" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 flex items-center"><i class="fas fa-upload mr-2"></i> Share Resource</button>
+                </nav>
+            </div>
+
+             <!-- Dynamic Content -->
+    <div id="tab-content" class="min-h-96">
+        <!-- Default Placeholder -->
+        <div id="videos" class="tab-section">
+            <h3 class="text-2xl font-semibold mb-4 text-gray-700">Featured Videos</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <iframe width="100%" height="250" src="https://www.youtube.com/embed/WWloIAQpMcQ" title="Mindfulness Meditation"></iframe>
+                <iframe width="100%" height="250" src="https://www.youtube.com/embed/MIr3RsUWrdo" title="Dealing with Anxiety"></iframe>
+            </div>
+        </div>
+
+        <div id="articles" class="tab-section hidden">
+            <h3 class="text-2xl font-semibold mb-4 text-gray-700">Articles</h3>
+            <ul class="list-disc ml-6 text-gray-600 space-y-2">
+                <li><a href="#" class="text-pink-500 hover:underline">10 Ways to Calm Your Mind During Stressful Times</a></li>
+                <li><a href="#" class="text-pink-500 hover:underline">Understanding Cyberbullying and How to Stop It</a></li>
+                <li><a href="#" class="text-pink-500 hover:underline">Stories of Students Who Overcame Anxiety</a></li>
+            </ul>
+        </div>
+
+        <div id="quotes" class="tab-section hidden">
+            <h3 class="text-2xl font-semibold mb-4 text-gray-700">Inspirational Quotes</h3>
+            <div class="space-y-4">
+                <blockquote class="border-l-4 border-pink-500 pl-4 italic text-gray-700">"You don’t have to control your thoughts. You just have to stop letting them control you."</blockquote>
+                <blockquote class="border-l-4 border-green-500 pl-4 italic text-gray-700">"Healing takes time, and asking for help is a courageous step."</blockquote>
+                <blockquote class="border-l-4 border-purple-500 pl-4 italic text-gray-700">"Your story isn’t over yet. Keep going."</blockquote>
+            </div>
+        </div>
+
+        <div id="upload" class="tab-section hidden">
+            <h3 class="text-2xl font-semibold mb-4 text-gray-700">Share Your Own Resource</h3>
+            <p class="text-gray-600 mb-4">Upload your own video, article, or document to help others in their wellness journey.</p>
+            
+            <form id="upload-form" class="space-y-4 bg-gray-50 p-6 rounded-lg shadow">
+                <label class="block">
+                    <span class="text-gray-700 font-medium">Title:</span>
+                    <input type="text" id="resource-title" class="mt-1 w-full border-gray-300 rounded-lg shadow-sm focus:ring-pink-400 focus:border-pink-400" placeholder="Enter resource title">
+                </label>
+                <label class="block">
+                    <span class="text-gray-700 font-medium">Category:</span>
+                    <select id="resource-category" class="mt-1 w-full border-gray-300 rounded-lg shadow-sm focus:ring-pink-400 focus:border-pink-400">
+                        <option>Anxiety</option>
+                        <option>Mindfulness & Meditation</option>
+                        <option>Bullying & Cyberbullying</option>
+                        <option>Inspiring Stories & Research</option>
+                    </select>
+                </label>
+                <label class="block">
+                    <span class="text-gray-700 font-medium">Upload File:</span>
+                    <input type="file" id="resource-file" class="mt-2 w-full border-gray-300 rounded-lg shadow-sm focus:ring-pink-400 focus:border-pink-400">
+                </label>
+                <button type="submit" class="bg-pink-500 text-white px-6 py-2 rounded-lg hover:bg-pink-600 transition duration-200">
+                    Upload Resource
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; 2023 MindWell Campus. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- External JS -->
+    <script src="script.js"></script>
+</body>
+</html>
