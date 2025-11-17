@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotus Mind - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #8a4fff;
+            --primary-light: #a67cff;
+            --primary-dark: #6b30e0;
+            --secondary: #ff7cf8;
+            --accent: #ff8a65;
+            --light: #f5f0ff;
+            --dark: #2c1a4d;
+            --text: #333;
+            --text-light: #6c757d;
+            --purple-light: #e6d9ff;
+            --purple-medium: #c9b2ff;
+            --white: #ffffff;
+            --gray: #f0f0f0;
+            /* Added for Navigation Bar */
+            --nav-pill: #a86e6e; 
+            --muted: #3b3b3b;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--purple-light), var(--purple-medium));
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            /* Changed to column to stack header above login box */
+            flex-direction: column; 
+            justify-content: flex-start; /* Start content from the top */
+            align-items: center;
+            padding: 20px;
+        }
+        
+        /* New Header Styles start here */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%; /* Ensure header spans full width */
+            margin-bottom: 20px; /* Space above login box */
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            margin-right: 10px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        .login-btn-nav { /* Renamed to avoid conflict with form button */
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-btn-nav:hover {
+            background-color: var(--secondary);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .nav-row {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 0;
+            border-radius: 0 0 50px 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .nav-pill {
+            background: var(--nav-pill);
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .nav-pill:hover {
+            transform: translateY(-3px);
+            background: var(--primary);
+            box-shadow: 0 5px 15px rgba(138, 79, 255, 0.4);
+        }
+
+        .nav-pill.active {
+            background: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu { display: block; }
+            nav { display: none; }
+            nav.active { display: block; }
+            nav ul { flex-direction: column; gap: 10px; margin-top: 10px; }
+            .logo img { width: 40px; height: 40px; }
+            .nav-row { gap: 10px; padding: 10px 15px; border-radius: 0 0 30px 30px; }
+            .nav-pill { padding: 8px 16px; font-size: 0.9rem; }
+            .header-container { padding: 10px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .nav-row {
+                flex-direction: column;
+                align-items: center;
+                border-radius: 0 0 20px 20px;
+            }
+
+            .nav-pill {
+                width: 80%;
+                text-align: center;
+            }
+        }
+        /* New Header Styles end here */
+        
+
+        .login-container {
+            background-color: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(138, 79, 255, 0.2);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            /* Adjust margin for non-centered layout */
+            margin-top: 20px; 
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .logo-container {
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(138, 79, 255, 0.3);
+            margin: 0 auto 15px;
+            display: block;
+        }
+
+        .site-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .site-subtitle {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        form {
+            width: 100%;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--gray);
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(138, 79, 255, 0.2);
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+
+        .toggle-password:hover {
+            color: var(--primary);
+        }
+
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(138, 79, 255, 0.3);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(138, 79, 255, 0.4);
+        }
+
+        .lost {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .lost a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .lost a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        .bottom-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray);
+        }
+
+        select {
+            padding: 8px 12px;
+            border: 1px solid var(--gray);
+            border-radius: 6px;
+            background-color: var(--white);
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .cookie-btn {
+            background: none;
+            border: 1px solid var(--gray);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cookie-btn:hover {
+            background-color: var(--gray);
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .success {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: #2e7d32;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .error {
+            background-color: rgba(244, 67, 54, 0.1);
+            color: #c62828;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray);
+        }
+
+        .feature {
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .feature i {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .register-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .register-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .role-selector {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .role-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .role-option {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid var(--gray);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .role-option.active {
+            border-color: var(--primary);
+            background-color: rgba(138, 79, 255, 0.1);
+            color: var(--primary);
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+            
+            .bottom-options {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .features {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .role-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+            
+
+        <div class="nav-row">
+            <a class="nav-pill" href="home.html">Home</a>
+            <a class="nav-pill" href="about.html">About us</a>
+            <a class="nav-pill" href="mood-tracker.html">Mood Tracker</a>
+            <a class="nav-pill" href="contact.html">Contact</a>
+            <a class="nav-pill" href="resources.html">Resources</a>
+            <a class="nav-pill active" href="login.html">Login</a>
+        </div>
+    </header>
+    <div class="login-container">
+        <div class="logo-container">
+            <img src="logo.png" alt="Lotus Mind Logo" class="logo">
+            <h1 class="site-title">LOTUS MIND</h1>
+            <p class="site-subtitle">Student Mental Wellness Portal</p>
+        </div>
+
+        <form id="loginForm">
+            <div class="role-selector">
+                <label>Login as:</label>
+                <div class="role-options">
+                    <div class="role-option active" data-role="user">Student/User</div>
+                    <div class="role-option" data-role="counsellor">Counsellor</div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="username" id="usernameLabel">Student ID or Email</label>
+                <input type="text" id="username" placeholder="Enter your ID or email">
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" placeholder="Enter your password">
+                    <span id="togglePassword" class="toggle-password">👁️</span>
+                </div>
+            </div>
+
+            <button type="submit" class="login-btn">Log in</button>
+
+            <p class="lost"><a href="#">Lost password?</a></p>
+
+            <div class="register-link">
+                Don't have an account? <a href="register.html">Register here</a>
+            </div>
+
+            <div class="bottom-options">
+                <select>
+                    <option>English (en)</option>
+                    <option>Dzongkha</option>
+                    <option>Hindi</option>
+                </select>
+                <button type="button" class="cookie-btn">Cookies notice</button>
+            </div>
+        </form>
+
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-shield-alt"></i>
+                <p>Secure Login</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-user-lock"></i>
+                <p>Privacy Protected</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-headset"></i>
+                <p>24/7 Support</p>
+            </div>
+        </div>
+
+        <p id="message" class="message"></p>
+    </div>
+
+    <script>
+        const form = document.getElementById("loginForm");
+        const username = document.getElementById("username");
+        const usernameLabel = document.getElementById("usernameLabel");
+        const password = document.getElementById("password");
+        const message = document.getElementById("message");
+        const togglePassword = document.getElementById("togglePassword");
+        const loginBtn = document.querySelector(".login-btn");
+        const roleOptions = document.querySelectorAll(".role-option");
+        
+        // JS for previous header's mobile menu
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const nav = document.querySelector('nav');
+
+        if (mobileMenu && nav) {
+            mobileMenu.addEventListener('click', () => {
+                nav.classList.toggle('active');
+            });
+        }
+        // End of Header JS
+
+        let userRole = "user"; // Default role
+
+        // Role selection
+        roleOptions.forEach(option => {
+            option.addEventListener("click", () => {
+                roleOptions.forEach(opt => opt.classList.remove("active"));
+                option.classList.add("active");
+                userRole = option.getAttribute("data-role");
+                
+                // Update label based on role
+                if (userRole === "counsellor") {
+                    usernameLabel.textContent = "Email or License ID";
+                    username.placeholder = "Enter your email or license ID";
+                } else {
+                    usernameLabel.textContent = "Student ID or Email";
+                    username.placeholder = "Enter your ID or email";
+                }
+            });
+        });
+
+        // Toggle show/hide password
+        togglePassword.addEventListener("click", () => {
+            if (password.type === "password") {
+                password.type = "text";
+                togglePassword.textContent = "🙈";
+            } else {
+                password.type = "password";
+                togglePassword.textContent = "👁️";
+            }
+        });
+
+        // Validation
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            message.className = "message";
+
+            // Disable button during processing
+            loginBtn.disabled = true;
+            loginBtn.textContent = "Logging in...";
+
+            if (username.value.trim() === "" && password.value.trim() === "") {
+                message.textContent = "⚠️ Please enter your credentials and password.";
+                message.classList.add("error");
+                loginBtn.disabled = false;
+                loginBtn.textContent = "Log in";
+            } 
+            else if (username.value.trim() === "") {
+                message.textContent = userRole === "counsellor" 
+                    ? "⚠️ Please enter your email or license ID." 
+                    : "⚠️ Please enter your Student ID or email.";
+                message.classList.add("error");
+                loginBtn.disabled = false;
+                loginBtn.textContent = "Log in";
+            } 
+            else if (password.value.trim() === "") {
+                message.textContent = "⚠️ Please enter your password.";
+                message.classList.add("error");
+                loginBtn.disabled = false;
+                loginBtn.textContent = "Log in";
+            } 
+            else if (password.value.length < 6) {
+                message.textContent = "⚠️ Password must be at least 6 characters.";
+                message.classList.add("error");
+                loginBtn.disabled = false;
+                loginBtn.textContent = "Log in";
+            } 
+            else {
+                // --- Code in your login.js or <script> block in login.html ---
+
+// ...
+// After successful authentication, assume you have the userRole variable set:
+// let userRole = "counsellor"; // or "user"
+
+let redirectUrl;
+let successMessage;
+
+if (userRole === "counsellor") {
+    // This is the Counsellor login redirect
+    redirectUrl = "counsellor-dashboard.html"; 
+    successMessage = "✅ Login successful! Redirecting to counsellor dashboard...";
+} else if (userRole === "user") { 
+    // This is the Student/User login redirect (assumes student URL is booking.html)
+    redirectUrl = "dashboard.html"; // <-- **CHECK THIS URL** (or 'dashboard.html' if that's the student page)
+    successMessage = "✅ Login successful! Redirecting to booking system...";
+} else {
+    // Fallback for unexpected roles
+    redirectUrl = "login.html";
+    successMessage = "⚠️ Login failed. Unknown user role.";
+}
+
+// ... then use the variables for display and redirection
+// message.textContent = successMessage;
+// setTimeout(() => { window.location.href = redirectUrl; }, 1500);
+
+// -----------------------------------------------------------------
+                
+                message.textContent = successMessage;
+                message.classList.add("success");
+                
+                // Redirect based on role
+                setTimeout(() => {
+                    window.location.href = redirectUrl;
+                }, 1500);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking System</title>
+    <link rel="stylesheet" href="booking.css" />
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="logo.png" alt="Lotus Mind Logo" class="logo" />
+            <h1>BOOKING SYSTEM</h1>
+        </header>
+
+        <main class="booking-section">
+            <section class="booking-form">
+                <h2>Book a Counselling Session</h2>
+
+                <form>
+                    <div class="form-group">
+                        <label for="studentId">Student ID</label>
+                        <input type="text" id="studentId" placeholder="Enter your ID" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender">
+                            <option selected disabled>Select Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="topic">Topics to Discuss</label>
+                        <input type="text" id="topic" placeholder="Exam anxiety, relationships..." />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="datetime">Date & Time</label>
+                        <input type="datetime-local" id="datetime" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Notes for Counsellor (optional)</label>
+                        <textarea id="notes" placeholder="Any important details..."></textarea>
+                    </div>
+
+                    <div class="form-group inline">
+                        <label for="anonymous">Anonymous Booking</label>
+                        <input type="checkbox" id="anonymous" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="counsellor">Counsellor Available</label>
+                        <select id="counsellor">
+                            <option selected disabled>Select Counsellor</option>
+                            <option>Mr. Karma Geyphel</option>
+                            <option>Mr. Wangchuk Dorji</option>
+                            <option>Mrs. Dechen Dolma</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="confirm-btn">Confirm Booking</button>
+                </form>
+            </section>
+
+            <section class="my-session">
+                <h3>My Sessions</h3>
+                <p>No session booked yet.</p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
