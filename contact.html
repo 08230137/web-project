@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Lotus Mind</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #8a4fff, #ff7cf8, #6a82fb, #fc5c7d);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation Bar */
+        .nav-row {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .nav-pill {
+            background: #a86e6e;
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+        
+        .nav-pill:hover { 
+            transform: translateY(-3px); 
+            background: #8a4fff;
+            box-shadow: 0 5px 15px rgba(138, 79, 255, 0.4);
+        }
+        
+        .nav-pill.active {
+            background: #8a4fff;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #8a4fff, #ff7cf8);
+            border-radius: 2px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        /* Contact Info Cards */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s ease;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #8a4fff, #ff7cf8, #6a82fb);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .info-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8a4fff, #ff7cf8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2c1a4d;
+            font-weight: 700;
+        }
+
+        .info-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .info-card a {
+            color: #8a4fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .info-card a:hover {
+            color: #ff7cf8;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #8a4fff, #ff7cf8, #6a82fb);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c1a4d;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(138, 79, 255, 0.2);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #8a4fff;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(138, 79, 255, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #8a4fff, #ff7cf8);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(138, 79, 255, 0.3);
+            display: block;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(138, 79, 255, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .footer p {
+            font-size: 1.2rem;
+            color: #2c1a4d;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .info-card:nth-child(1) { animation: float 6s ease-in-out infinite; }
+        .info-card:nth-child(2) { animation: float 6s ease-in-out infinite 1.5s; }
+        .info-card:nth-child(3) { animation: float 6s ease-in-out infinite 3s; }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .nav-row {
+                padding: 10px 15px;
+                gap: 10px;
+            }
+            
+            .nav-pill {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+            
+            .contact-form {
+                padding: 30px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-row {
+                flex-direction: column;
+                align-items: center;
+                border-radius: 20px;
+            }
+            
+            .nav-pill {
+                width: 80%;
+                text-align: center;
+            }
+            
+            .contact-form {
+                padding: 25px 20px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="nav-row">
+        <a class="nav-pill" href="home.html">Home</a>
+        <a class="nav-pill" href="about.html">About us</a>
+        <a class="nav-pill" href="mood-tracker.html">Mood Tracker</a>
+        <a class="nav-pill" href="resources.html">Resources</a>
+          <a class="nav-pill active" href="contact.html">Contact</a>
+        <a class="nav-pill" href="login.html">Login</a>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1>Get In Touch</h1>
+            <p>We're here to help and answer any questions you might have</p>
+        </header>
+
+        <div class="contact-grid">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Our Location</h3>
+                    <p>Samtse College of Education</p>
+                    <p>Samtse, Bhutan</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Phone Numbers</h3>
+                    <p>General Inquiries: <a href="tel:+97512345678">+975 12 345 678</a></p>
+                    <p>Emergency Support: <a href="tel:+97598765432">+975 98 765 432</a></p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Address</h3>
+                    <p>General: <a href="mailto:info@lotusmind.edu.bt">info@lotusmind.edu.bt</a></p>
+                    <p>Support: <a href="mailto:support@lotusmind.edu.bt">support@Lotus%20Mind/home.html</a></p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3 style="color: #2c1a4d; margin-bottom: 30px; font-size: 1.8rem;">Send us a Message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="support">Technical Support</option>
+                            <option value="counseling">Counseling Services</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" required placeholder="Type your message here..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!--  Footer -->
+<footer style="
+    background: linear-gradient(135deg, #2c1a4d 0%, #1a1033 100%);
+    color: white;
+    padding: 40px 20px 20px;
+    text-align: center;
+    margin-top: 50px;
+">
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <!-- Logo and Brand -->
+        <div style="margin-bottom: 20px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 15px;">
+                <img src="logo.png" alt="Lotus Mind Logo" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #8a4fff;">
+                <h3 style="color: #8a4fff; margin: 0; font-size: 1.5rem;">LOTUS MIND</h3>
+            </div>
+            <p style="color: #b8b0ff; max-width: 500px; margin: 0 auto 20px; line-height: 1.5;">
+                Your mental wellness companion. Supporting your journey towards better mental health.
+            </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 25px;">
+            <a href="home.html" style="color: #b8b0ff; text-decoration: none; transition: color 0.3s;">Home</a>
+            <a href="about.html" style="color: #b8b0ff; text-decoration: none; transition: color 0.3s;">About</a>
+            <a href="mood-tracker.html" style="color: #b8b0ff; text-decoration: none; transition: color 0.3s;">Mood Tracker</a>
+            <a href="booking.html" style="color: #b8b0ff; text-decoration: none; transition: color 0.3s;">Book Session</a>
+            <a href="resources.html" style="color: #b8b0ff; text-decoration: none; transition: color 0.3s;">Resources</a>
+            <a href="contact.html" style="color: #b8b0ff; text-decoration: none; transition: color 0.3s;">Contact</a>
+        </div>
+
+        <!-- Social Links -->
+        <div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 25px;">
+            <a href="#" style="
+                width: 40px; height: 40px; 
+                background: linear-gradient(135deg, #8a4fff, #ff7cf8);
+                border-radius: 50%; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                color: white; 
+                text-decoration: none;
+                transition: transform 0.3s;
+            "><i class="fab fa-facebook-f"></i></a>
+            <a href="#" style="
+                width: 40px; height: 40px; 
+                background: linear-gradient(135deg, #8a4fff, #ff7cf8);
+                border-radius: 50%; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                color: white; 
+                text-decoration: none;
+                transition: transform 0.3s;
+            "><i class="fab fa-instagram"></i></a>
+            <a href="#" style="
+                width: 40px; height: 40px; 
+                background: linear-gradient(135deg, #8a4fff, #ff7cf8);
+                border-radius: 50%; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                color: white; 
+                text-decoration: none;
+                transition: transform 0.3s;
+            "><i class="fab fa-twitter"></i></a>
+        </div>
+
+        <!-- Emergency Help -->
+        <div style="
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            padding: 12px 20px;
+            border-radius: 25px;
+            margin: 0 auto 20px;
+            max-width: 300px;
+        ">
+            <a href="tel:+97598765432" style="
+                color: white; 
+                text-decoration: none; 
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+            ">
+                <i class="fas fa-phone-alt"></i>
+                Emergency: +975 98 765 432
+            </a>
+        </div>
+
+        <!-- Copyright -->
+        <div style="border-top: 1px solid #3a2a5d; padding-top: 20px;">
+            <p style="color: #b8b0ff; margin: 0; font-size: 0.9rem;">
+                © 2025 Lotus Mind. All rights reserved. Made with ❤️ for mental wellness.
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Add hover effects
+    document.querySelectorAll('footer a').forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            if(!this.querySelector('i')) { // Only for text links, not social icons
+                this.style.color = '#8a4fff';
+            } else {
+                this.style.transform = 'translateY(-2px)';
+            }
+        });
+        link.addEventListener('mouseleave', function() {
+            if(!this.querySelector('i')) { // Only for text links, not social icons
+                this.style.color = '#b8b0ff';
+            } else {
+                this.style.transform = 'translateY(0)';
+            }
+        });
+    });
+</script>
+    </div>
+
+    <script>
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Simple validation
+            if (name && email && subject && message) {
+                // Show success message
+                alert('Thank you, ' + name + '! Your message has been sent successfully. We will get back to you soon.');
+                
+                // Reset form
+                document.getElementById('contactForm').reset();
+            } else {
+                alert('Please fill in all fields before submitting.');
+            }
+        });
+    </script>
+</body>
+</html>
